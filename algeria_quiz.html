@@ -5,33 +5,44 @@
 
 
 <style>
-:root{--bg:#14182e;--card:#1f2547;--ink:#f5f1e6;--mute:#9aa3c7;--r:#e2453c;--b:#2f6fe0;--y:#f0b429;--g:#17a35f}
+:root{--bg:#fbf8f1;--ink:#17261f;--mute:#5d6b62;--line:#d9d2bf;--gr:#006233;--r:#d21034;--b:#1e5aa8;--y:#e8a317;--g:#0b8a54}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.4 "Trebuchet MS",system-ui,sans-serif;min-height:100vh}
-#app{max-width:1000px;margin:0 auto;padding:24px}
-h1{font:800 clamp(2rem,6vw,3.6rem)/1 Georgia,serif;margin:0 0 6px}
+body{margin:0;color:var(--ink);font:18px/1.45 "Trebuchet MS",system-ui,sans-serif;min-height:100vh;background:radial-gradient(ellipse 90% 50% at 50% 0,rgba(0,98,51,.10),transparent 70%),linear-gradient(180deg,#fbf8f1 0%,#f4ecd8 100%);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--gr) 50%,#fff 50%);border-bottom:1px solid var(--line);z-index:5}
+body::after{content:"";position:fixed;inset:auto 0 0 0;height:90px;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120V70C150 20 300 20 450 60S750 110 900 60 1100 20 1200 50V120Z' fill='%23e9c46a' fill-opacity='.5'/%3E%3Cpath d='M0 120V95C200 60 350 70 550 95S900 80 1200 80V120Z' fill='%23d9a441' fill-opacity='.6'/%3E%3C/svg%3E") bottom/100% 100% no-repeat}
+#app{max-width:1000px;margin:0 auto;padding:36px 24px 110px}
+.brand{display:flex;align-items:center;gap:18px;margin-bottom:8px}
+.brand svg{width:96px;height:64px;flex:none;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.ar{font:700 clamp(1.8rem,5vw,3rem)/1.1 "Geeza Pro","Noto Naskh Arabic","Traditional Arabic",serif;color:var(--r)}
+h1{font:800 clamp(1.6rem,5vw,2.8rem)/1.1 Georgia,serif;margin:0 0 6px;color:var(--gr)}
+.brand h1{margin:0}
 .sub{color:var(--mute);margin:0 0 24px}
-.card{background:var(--card);border-radius:14px;padding:16px 20px;margin:12px 0;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.card{background:#fff;border:1px solid var(--line);border-left:6px solid var(--gr);border-radius:14px;padding:16px 20px;margin:12px 0;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .card b{flex:1;font-size:1.2rem}
-button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 18px;background:#3a4276;color:var(--ink)}
-button:focus-visible,input:focus-visible{outline:3px solid var(--y);outline-offset:2px}
-.pri{background:var(--y);color:#1b1500;font-weight:700}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:10px 18px;background:#fff;color:var(--ink);transition:transform .1s}
+button:hover{transform:translateY(-1px)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.pri{background:var(--gr);color:#fff;font-weight:700;border-color:var(--gr)}
 .top{display:flex;justify-content:space-between;color:var(--mute);margin-bottom:8px}
-.bar{height:12px;background:#2a3160;border-radius:6px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--y);width:100%}
-.q{font:700 clamp(1.5rem,4vw,2.5rem)/1.2 Georgia,serif;margin:18px 0}
-.ans{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
-.ans button{min-height:110px;font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;text-align:left;display:flex;gap:14px;align-items:center;color:#fff;border-radius:12px}
+.bar{height:14px;background:#e6dfcb;border-radius:7px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gr);width:100%}
+.q{font:700 clamp(1.5rem,4vw,2.5rem)/1.2 Georgia,serif;margin:18px 0;background:linear-gradient(135deg,#005a2f,#00803f);color:#fff;border-radius:16px;padding:24px 28px;box-shadow:0 5px 0 rgba(0,0,0,.2);border-bottom:4px solid var(--y)}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.ans button{min-height:110px;font-size:clamp(1.1rem,2.6vw,1.7rem);font-weight:700;text-align:left;display:flex;gap:16px;align-items:center;color:#fff;border:0;border-radius:14px;padding:12px 22px;box-shadow:0 6px 0 rgba(0,0,0,.3)}
+.ans button:active:not(:disabled){transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.ans button span:first-child{font-size:1.8rem;opacity:.85}
 .a0{background:var(--r)}.a1{background:var(--b)}.a2{background:var(--y);color:#1b1500!important}.a3{background:var(--g)}
-.ans button.dim{opacity:.3}
-.ans button.ok{outline:5px solid #fff}
-#msg{min-height:2.6em;margin:16px 0 8px;font-size:1.3rem}
-input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:8px;border:2px solid #3a4276;background:#10142a;color:var(--ink)}
+.ans button.dim{opacity:.3;box-shadow:none}
+.ans button.ok{outline:5px solid var(--ink);animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.03)}}
+@media(prefers-reduced-motion:reduce){.ans button.ok{animation:none}button{transition:none}}
+#msg{min-height:2.6em;margin:16px 0 8px;font-size:1.4rem;font-weight:700;color:var(--gr)}
+input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:8px;border:2px solid var(--line);background:#fff;color:var(--ink)}
 .fld{margin:8px 0}
-.qb{background:var(--card);border-radius:14px;padding:14px 18px;margin:14px 0}
+.qb{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:14px 0}
 .row{display:flex;gap:10px;align-items:center;margin:6px 0}
-.row input[type=radio]{width:22px;height:22px;accent-color:var(--y)}
-.big{font:800 3rem/1 Georgia,serif;color:var(--y)}
+.row input[type=radio]{width:22px;height:22px;accent-color:var(--gr)}
+.big{font:800 3.4rem/1 Georgia,serif;color:var(--r)}
 ol{padding-left:1.3em}
 @media(max-width:600px){.ans{grid-template-columns:1fr}}
 </style></head>
@@ -87,6 +98,33 @@ const DEF = [
   {q:'What is the longest river in Algeria?', a:['Soummam','Chelif','Seybouse','Tafna'], c:1},
   {q:'Who won Olympic gold in the men\'s 1500 m at Atlanta 1996?', a:['Hassiba Boulmerka','Noureddine Morceli','Taoufik Makhloufi','Said Aouita'], c:1},
   {q:'Who scored Algeria\'s goal in the 2019 Africa Cup of Nations final against Senegal?', a:['Riyad Mahrez','Baghdad Bounedjah','Islam Slimani','Sofiane Feghouli'], c:1}
+ ]},
+  {id:'s6', name:'Set 6: Ancient Algeria', qs:[
+  {q:'Which people are the indigenous inhabitants of North Africa, including Algeria?', a:['Vikings','Berbers (Amazigh)','Mongols','Persians'], c:1},
+  {q:'In which month is Yennayer, the Amazigh New Year, celebrated?', a:['January','March','July','October'], c:0},
+  {q:'Which Roman emperor was born in Caesarea (modern Cherchell)?', a:['Septimius Severus','Macrinus','Caracalla','Philip the Arab'], c:1},
+  {q:'Which Roman legion was permanently based at Lambaesis in Numidia?', a:['Legio III Augusta','Legio X Fretensis','Legio XIII Gemina','Legio II Parthica'], c:0},
+  {q:'What was the Roman name of the ruins of Djémila?', a:['Calama','Thubursicum','Cuicul','Rusicade'], c:2},
+  {q:'The Rustamid imamate (761-909) had its capital at which city, near modern Tiaret?', a:['Achir','Sijilmasa','Tahert','Kairouan'], c:2},
+  {q:'Who founded the medieval city of Algiers around 960?', a:['Ziri ibn Manad','Abd al-Mu\'min','Yaghmurasen','Buluggin ibn Ziri'], c:3}
+ ]},
+  {id:'s7', name:'Set 7: Independence and after', qs:[
+  {q:'On which date is Algeria\'s Independence Day celebrated?', a:['1 November','5 July','8 May','19 March'], c:1},
+  {q:'What is the currency of Algeria?', a:['Dirham','Pound','Dinar','Rial'], c:2},
+  {q:'Mohamed Boudiaf, head of the High State Council, was assassinated in 1992 in which city?', a:['Oran','Constantine','Annaba','Algiers'], c:2},
+  {q:'The 1963 Sand War with Morocco concerned the border areas of Tindouf and which other Algerian town?', a:['Béchar','Ghardaïa','Biskra','El Oued'], c:0},
+  {q:'Who succeeded Boudiaf as head of the High State Council in 1992?', a:['Liamine Zéroual','Ali Kafi','Redha Malek','Abdelhamid Brahimi'], c:1},
+  {q:'Which Saharan field, discovered in 1956, is Algeria\'s largest oil field?', a:['Hassi R\'Mel','In Salah','Hassi Messaoud','Rhourde Nouss'], c:2},
+  {q:'Which French general commanded the 10th Parachute Division during the Battle of Algiers?', a:['Jacques Massu','Raoul Salan','Maurice Challe','Marcel Bigeard'], c:0}
+ ]},
+ {id:'s8', name:'Set 8: Oases, cities and oddities', qs:[
+  {q:'Which two languages are official in Algeria?', a:['Arabic and French','Arabic and Tamazight','Arabic and English','French and Tamazight'], c:1},
+  {q:'Which animal gives the national football team its nickname?', a:['Camel','Gazelle','Fennec fox','Lion'], c:2},
+  {q:'Which of these is NOT one of the five ksour of the M\'zab valley?', a:['Béni Abbès','El Atteuf','Melika','Beni Isguen'], c:0},
+  {q:'Which Algerian town was the headquarters of the French Foreign Legion until 1962?', a:['Tiaret','Mascara','Saïda','Sidi Bel Abbès'], c:3},
+  {q:'Which oasis town is nicknamed the "Red Oasis"?', a:['Ghardaïa','El Oued','Timimoun','Biskra'], c:2},
+  {q:'The Santa Cruz fort and chapel overlook which Algerian city?', a:['Algiers','Oran','Béjaïa','Mostaganem'], c:1},
+  {q:'Algeria\'s lowest point is Chott Melrhir. About how far below sea level is it?', a:['10 m','90 m','40 m','150 m'], c:2}
  ]}
 
  
